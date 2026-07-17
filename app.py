@@ -8,11 +8,12 @@ import joblib
 deployed_dt = joblib.load('diabetes_prediction_model.pkl')
 
 # --- CODE BLOCK: PREDICTION LOGIC FOR 5 FEATURES ---
+#x = df[['Pregnancies', 'Glucose', 'Insulin','BMI',  'Age']]
 def predict_diabetes(pregnancies, glucose, insulin, bmi, age):
     # The model expects a 2D array matching the exact order of x_train
     input_data = [[pregnancies, glucose, insulin, bmi, age]]
     prediction = deployed_dt.predict(input_data)
-    
+
     # Interpret the binary outcome (typically 1 for positive, 0 for negative)
     if prediction[0] == 1:
         return "Prediction: High Risk of Diabetes (Positive)"
@@ -32,7 +33,15 @@ interface = gr.Interface(
     ],
     outputs=gr.Text(label="Assessment Result"),
     title="Diabetes Prediction System",
-    description="Enter the medical metrics to predict diabetes risk using a Decision Tree Machine Learning model."
+    description="""
+    Enter the medical metrics to predict diabetes risk using a Decision Tree Machine Learning model.
+
+    **Developed By:**
+    * **Name:**Nishu
+    * **College:**Panipat Institute of Engineering and Technology
+    * **Branch:**B.Tech CSE Core
+    * **Roll No:**28240273
+    """
 )
 # ------------------------------------------
 
